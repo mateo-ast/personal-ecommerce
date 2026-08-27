@@ -1,0 +1,46 @@
+<nav class="navbar">
+  <a href="/" class="navbar__logo">MiTienda</a>
+
+  <ul class="navbar__categories">
+    <li><a href="/categoria/electronica">Electrónica</a></li>
+    <li><a href="/categoria/ropa">Ropa</a></li>
+    <li><a href="/categoria/hogar">Hogar</a></li>
+    <li><a href="/categoria/deportes">Deportes</a></li>
+    <li><a href="/categoria/belleza">Belleza</a></li>
+  </ul>
+
+  <div class="navbar__session">
+    <button class="navbar__session-btn" id="sessionToggle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      Mi Cuenta
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+
+    <div class="navbar__dropdown" id="sessionDropdown">
+      <a href="/auth/login" class="navbar__dropdown-item">Iniciar Sesión</a>
+      <a href="/auth/register" class="navbar__dropdown-item">Registrarse</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('sessionToggle');
+  const dropdown = document.getElementById('sessionDropdown');
+
+  toggle?.addEventListener('click', () => {
+    dropdown?.classList.toggle('navbar__dropdown--active');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!toggle?.contains(e.target) && !dropdown?.contains(e.target)) {
+      dropdown?.classList.remove('navbar__dropdown--active');
+    }
+  });
+</script>

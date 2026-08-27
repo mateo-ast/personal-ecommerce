@@ -1,0 +1,34 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+build/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# bun
+bun.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.helix
+
+# OS
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+npm-debug.log*
+
+# coverage
+coverage/
+.nyc_output/
