@@ -1,0 +1,17 @@
+<section class="hero">
+  <div class="hero__content">
+    <span class="hero__badge">Oferta especial</span>
+    <h1 class="hero__title"><%= product.name %></h1>
+    <p class="hero__description"><%= product.description %></p>
+    <div class="hero__prices">
+      <span class="hero__price">$<%= product.price.toLocaleString('es-AR') %></span>
+      <% if (product.originalPrice) { %>
+        <span class="hero__original-price">$<%= product.originalPrice.toLocaleString('es-AR') %></span>
+      <% } %>
+    </div>
+    <a href="/productos/<%= product.id %>" class="hero__btn">Ver oferta</a>
+  </div>
+  <div class="hero__image">
+    <img src="<%= product.image %>" alt="<%= product.name %>" />
+  </div>
+</section>
