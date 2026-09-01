@@ -12,3 +12,8 @@ export interface LoginView extends BaseLayout {
   errors?: Record<string, string>;
   values?: { email?: string };
 }
+
+export interface RegisterView extends BaseLayout {
+  errors?: Record<string, string>;
+  values?: { name?: string; email?: string };
+}
