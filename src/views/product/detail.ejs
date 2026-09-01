@@ -1,0 +1,49 @@
+<nav class="breadcrumb">
+  <a href="/" class="breadcrumb__link">Inicio</a>
+  <span class="breadcrumb__separator">/</span>
+  <a href="/categoria/<%= product.category.toLowerCase() %>" class="breadcrumb__link"><%= product.category %></a>
+  <span class="breadcrumb__separator">/</span>
+  <span class="breadcrumb__current"><%= product.name %></span>
+</nav>
+
+<section class="product-detail">
+  <div class="product-detail__gallery">
+    <img
+      src="<%= product.image %>"
+      alt="<%= product.name %>"
+      class="product-detail__image"
+    />
+  </div>
+
+  <div class="product-detail__info">
+    <span class="product-detail__category"><%= product.category %></span>
+    <h1 class="product-detail__name"><%= product.name %></h1>
+    <p class="product-detail__price">$<%= product.price.toLocaleString('es-AR') %></p>
+    <p class="product-detail__description"><%= product.description %></p>
+
+    <div class="product-detail__actions">
+      <div class="product-detail__quantity">
+        <button class="product-detail__qty-btn" id="qtyMinus">-</button>
+        <span class="product-detail__qty-value" id="qtyValue">1</span>
+        <button class="product-detail__qty-btn" id="qtyPlus">+</button>
+      </div>
+      <button class="product-detail__btn">Agregar al carrito</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const qtyValue = document.getElementById('qtyValue');
+  const qtyMinus = document.getElementById('qtyMinus');
+  const qtyPlus = document.getElementById('qtyPlus');
+
+  qtyMinus.addEventListener('click', () => {
+    const current = parseInt(qtyValue.textContent);
+    if (current > 1) qtyValue.textContent = current - 1;
+  });
+
+  qtyPlus.addEventListener('click', () => {
+    const current = parseInt(qtyValue.textContent);
+    qtyValue.textContent = current + 1;
+  });
+</script>
