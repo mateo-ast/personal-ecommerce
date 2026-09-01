@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import indexRoutes from './src/routes/index.js';
 
 const app: Express = express();
-const PORT = process.env.PORT || 3000;
+const PORT: string | number = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.use('/', indexRoutes);
 
-app.listen(PORT, () => {
+app.listen(String(PORT), () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 

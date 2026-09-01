@@ -1,0 +1,122 @@
+<section class="login">
+  <div class="login__card">
+    <h1 class="login__title">Iniciar Sesión</h1>
+    <p class="login__subtitle">Ingresa a tu cuenta para continuar</p>
+
+    <form class="login__form" id="loginForm" novalidate method="POST" action="/auth/login">
+      <div class="form__group">
+        <label class="form__label" for="email">Correo electrónico</label>
+        <input class="form__input" type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required
+          autocomplete="email" />
+        <span class="form__error" id="emailError"></span>
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="password">Contraseña</label>
+        <div class="form__input-wrapper">
+          <input class="form__input form__input--password" type="password" id="password" name="password"
+            placeholder="Mínimo 8 caracteres" required minlength="8" autocomplete="current-password" />
+          <button type="button" class="form__toggle-password" id="togglePassword" aria-label="Mostrar contraseña">
+            <svg class="form__eye form__eye--show" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg class="form__eye form__eye--hide" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"></path>
+              <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+              <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"></path>
+            </svg>
+          </button>
+        </div>
+        <span class="form__error" id="passwordError"></span>
+      </div>
+
+      <div class="form__row">
+        <label class="form__checkbox">
+          <input type="checkbox" name="remember" />
+          <span class="form__checkbox-mark"></span>
+          Recordarme
+        </label>
+        <a href="/auth/forgot-password" class="form__link">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button type="submit" class="form__btn form__btn--primary">Iniciar Sesión</button>
+
+      <p class="login__footer">
+        ¿No tienes cuenta?
+        <a href="/auth/register" class="form__link form__link--bold">Regístrate</a>
+      </p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const emailError = document.getElementById('emailError');
+  const passwordError = document.getElementById('passwordError');
+  const toggleBtn = document.getElementById('togglePassword');
+
+  const validators = {
+    email(value) {
+      if (!value.trim()) return 'El correo electrónico es obligatorio';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Ingresa un correo electrónico válido';
+      return '';
+    },
+    password(value) {
+      if (!value) return 'La contraseña es obligatoria';
+      if (value.length < 8) return 'La contraseña debe tener al menos 8 caracteres';
+      return '';
+    }
+  };
+
+  function showError(input, errorEl, message) {
+    if (message) {
+      input.classList.add('form__input--error');
+      errorEl.textContent = message;
+      errorEl.style.display = 'block';
+    } else {
+      input.classList.remove('form__input--error');
+      errorEl.textContent = '';
+      errorEl.style.display = 'none';
+    }
+  }
+
+  emailInput.addEventListener('input', () => {
+    showError(emailInput, emailError, validators.email(emailInput.value));
+  });
+
+  passwordInput.addEventListener('input', () => {
+    showError(passwordInput, passwordError, validators.password(passwordInput.value));
+  });
+
+  toggleBtn.addEventListener('click', () => {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+
+    const showEye = toggleBtn.querySelector('.form__eye--show');
+    const hideEye = toggleBtn.querySelector('.form__eye--hide');
+    showEye.style.display = isPassword ? 'none' : 'block';
+    hideEye.style.display = isPassword ? 'block' : 'none';
+
+    toggleBtn.setAttribute('aria-label', isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  });
+
+  form.addEventListener('submit', (e) => {
+    const emailErr = validators.email(emailInput.value);
+    const passwordErr = validators.password(passwordInput.value);
+
+    showError(emailInput, emailError, emailErr);
+    showError(passwordInput, passwordError, passwordErr);
+
+    if (emailErr || passwordErr) {
+      e.preventDefault();
+    }
+  });
+</script>
