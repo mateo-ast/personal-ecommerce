@@ -35,3 +35,15 @@ export interface RegisterView extends BaseLayout {
 export interface ProductDetailView extends BaseLayout {
   product: Product;
 }
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
+}
+
+export interface CartView extends BaseLayout {
+  items: CartItem[];
+  subtotal: number;
+  shipping: number;
+  total: number;
+}

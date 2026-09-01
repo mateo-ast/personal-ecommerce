@@ -113,6 +113,226 @@ body {
   border-radius: 0 0 6px 6px;
 }
 
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar__cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  color: #374151;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.navbar__cart:hover {
+  background: #f9fafb;
+}
+
+/* Cart */
+.cart {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.cart__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 2rem;
+}
+
+.cart__empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  color: #6b7280;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cart__layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.cart__items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart__item {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  transition: box-shadow 0.2s;
+}
+
+.cart__item:hover {
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.06);
+}
+
+.cart__item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f9fafb;
+  padding: 0.5rem;
+  flex-shrink: 0;
+}
+
+.cart__item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cart__item-category {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #2563eb;
+}
+
+.cart__item-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.cart__item-price {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.cart__item-quantity {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cart__qty-btn {
+  width: 32px;
+  height: 32px;
+  background: #f9fafb;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #374151;
+  transition: background-color 0.2s;
+}
+
+.cart__qty-btn:hover {
+  background: #e5e7eb;
+}
+
+.cart__qty-value {
+  width: 32px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #111827;
+}
+
+.cart__item-subtotal {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #059669;
+  min-width: 100px;
+  text-align: right;
+}
+
+.cart__item-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  padding: 0.25rem;
+  transition: color 0.2s;
+}
+
+.cart__item-remove:hover {
+  color: #dc2626;
+}
+
+.cart__summary {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: sticky;
+  top: 80px;
+}
+
+.cart__summary-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.cart__summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.cart__summary-row--total {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.cart__summary-divider {
+  border-top: 1px solid #e5e7eb;
+  margin: 0.25rem 0;
+}
+
+.cart__checkout-btn {
+  text-align: center;
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+.cart__continue-link {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.cart__continue-link:hover {
+  text-decoration: underline;
+}
+
 /* Login */
 .login {
   display: flex;
@@ -258,6 +478,7 @@ body {
 }
 
 .form__link {
+  text-align: justify;
   font-size: 0.85rem;
   color: #2563eb;
   text-decoration: none;
@@ -690,5 +911,17 @@ body {
 
   .navbar__categories a {
     font-size: 0.8rem;
+  }
+
+  .cart__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart__item {
+    flex-wrap: wrap;
+  }
+
+  .cart__item-subtotal {
+    min-width: auto;
   }
 }
