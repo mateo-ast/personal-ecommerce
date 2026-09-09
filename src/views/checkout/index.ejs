@@ -1,0 +1,99 @@
+<div class="checkout">
+  <h1 class="checkout__title">Checkout</h1>
+
+  <% if (items.length === 0) { %>
+    <div class="checkout__empty">
+      <p>No hay productos en tu carrito.</p>
+      <a href="/" class="form__btn form__btn--primary">Explorar productos</a>
+    </div>
+  <% } else { %>
+    <div class="checkout__layout">
+      <div class="checkout__form-section">
+        <h2 class="checkout__section-title">Datos de envío</h2>
+        <form class="checkout__form" method="POST" action="/checkout">
+          <div class="form__group">
+            <label class="form__label" for="fullName">Nombre completo</label>
+            <input class="form__input" type="text" id="fullName" name="fullName" placeholder="Tu nombre" required />
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="email">Correo electrónico</label>
+            <input class="form__input" type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required />
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="phone">Teléfono</label>
+            <input class="form__input" type="tel" id="phone" name="phone" placeholder="1234567890" required />
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="address">Dirección</label>
+            <input class="form__input" type="text" id="address" name="address" placeholder="Calle, número, piso" required />
+          </div>
+
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="city">Ciudad</label>
+              <input class="form__input" type="text" id="city" name="city" placeholder="Buenos Aires" required />
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="zipCode">Código postal</label>
+              <input class="form__input" type="text" id="zipCode" name="zipCode" placeholder="1000" required />
+            </div>
+          </div>
+
+          <h2 class="checkout__section-title checkout__section-title--mt">Método de pago</h2>
+          <div class="checkout__payment">
+            <label class="form__checkbox">
+              <input type="radio" name="payment" value="card" checked />
+              <span class="form__checkbox-mark"></span>
+              Tarjeta de crédito / débito
+            </label>
+            <label class="form__checkbox">
+              <input type="radio" name="payment" value="transfer" />
+              <span class="form__checkbox-mark"></span>
+              Transferencia bancaria
+            </label>
+            <label class="form__checkbox">
+              <input type="radio" name="payment" value="cash" />
+              <span class="form__checkbox-mark"></span>
+              Efectivo contra entrega
+            </label>
+          </div>
+
+          <button type="submit" class="form__btn form__btn--primary checkout__submit">Confirmar Pedido</button>
+        </form>
+      </div>
+
+      <div class="checkout__summary">
+        <h2 class="checkout__summary-title">Resumen del Pedido</h2>
+        <div class="checkout__summary-items">
+          <% items.forEach(item => { const price = item.product.isOffer && item.product.originalPrice ? item.product.originalPrice : item.product.price; %>
+            <div class="checkout__summary-item">
+              <img src="<%= item.product.image %>" alt="<%= item.product.name %>" class="checkout__summary-img" />
+              <div class="checkout__summary-info">
+                <span class="checkout__summary-name"><%= item.product.name %></span>
+                <span class="checkout__summary-qty">x<%= item.quantity %></span>
+              </div>
+              <span class="checkout__summary-price">$<%= (price * item.quantity).toLocaleString('es-AR') %></span>
+            </div>
+          <% }) %>
+        </div>
+        <div class="checkout__summary-divider"></div>
+        <div class="checkout__summary-row">
+          <span>Subtotal</span>
+          <span>$<%= subtotal.toLocaleString('es-AR') %></span>
+        </div>
+        <div class="checkout__summary-row">
+          <span>Envío</span>
+          <span><%= shipping === 0 ? 'Gratis' : '$' + shipping.toLocaleString('es-AR') %></span>
+        </div>
+        <div class="checkout__summary-divider"></div>
+        <div class="checkout__summary-row checkout__summary-row--total">
+          <span>Total</span>
+          <span>$<%= total.toLocaleString('es-AR') %></span>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</div>

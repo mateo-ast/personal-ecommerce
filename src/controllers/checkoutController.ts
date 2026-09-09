@@ -1,17 +1,17 @@
 import { Request, Response } from 'express';
-import type { CartView } from '../types/views.js';
+import type { CheckoutView } from '../types/views.js';
 import { cartItems } from '../data/cart.js';
 import { calculateTotals } from '../lib/cartCalculations.js';
 
 export const index = (_req: Request, res: Response) => {
   const { subtotal, shipping, total } = calculateTotals(cartItems);
 
-  const data: CartView = {
-    title: 'Mi Carrito',
+  const data: CheckoutView = {
+    title: 'Checkout',
     items: cartItems,
     subtotal,
     shipping,
     total,
   };
-  res.render('cart/index', data);
+  res.render('checkout/index', data);
 };

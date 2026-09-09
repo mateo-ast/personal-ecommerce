@@ -47,3 +47,10 @@ export interface CartView extends BaseLayout {
   shipping: number;
   total: number;
 }
+
+export interface CheckoutView extends BaseLayout {
+  items: CartItem[];
+  subtotal: number;
+  shipping: number;
+  total: number;
+}
