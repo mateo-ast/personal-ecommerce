@@ -31,27 +31,74 @@ body {
 }
 
 .navbar__logo {
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: #111827;
-  text-decoration: none;
-}
-
-.navbar__categories {
   display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-
-.navbar__categories a {
+  align-items: center;
   text-decoration: none;
-  color: #4b5563;
-  font-size: 0.9rem;
-  transition: color 0.2s;
+  flex-shrink: 0;
 }
 
-.navbar__categories a:hover {
-  color: #111827;
+.navbar__logo-img {
+  height: 32px;
+  width: auto;
+}
+
+.navbar__search {
+  display: flex;
+  flex: 1;
+  max-width: 500px;
+  margin: 0 2rem;
+}
+
+.navbar__search-input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  color: #1f2937;
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.navbar__search-input::placeholder {
+  color: #9ca3af;
+}
+
+.navbar__search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.15);
+}
+
+.navbar__search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  background: #2563eb;
+  color: #fff;
+  border: 1px solid #2563eb;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.navbar__search-btn:hover {
+  background: #1d4ed8;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .navbar__session {
@@ -1038,26 +1085,25 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar__search {
+    order: 3;
+    flex: 1 1 100%;
+    margin: 0.5rem 0 0;
+  }
+}
+
 @media (max-width: 640px) {
   .product-grid {
     grid-template-columns: 1fr;
   }
 
   .navbar {
-    flex-wrap: wrap;
     gap: 0.75rem;
-  }
-
-  .navbar__categories {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    order: 3;
-    width: 100%;
-  }
-
-  .navbar__categories a {
-    font-size: 0.8rem;
   }
 
   .cart__layout {

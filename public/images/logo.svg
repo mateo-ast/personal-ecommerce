@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40">
+  <!-- Shopping bag icon -->
+  <rect x="8" y="12" width="16" height="18" rx="2" fill="#2563eb"/>
+  <path d="M12 12V9a6 6 0 1 1 12 0v3" stroke="#2563eb" stroke-width="2" fill="none"/>
+  <!-- Text -->
+  <text x="36" y="26" font-size="20" font-weight="700" fill="#111827" font-family="system-ui, -apple-system, sans-serif">MiTienda</text>
+</svg>
